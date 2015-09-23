@@ -9,8 +9,10 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.stereotype.Repository;
 
 import com.voiturier.dao.ex.ExceptionDao;
 import com.voiturier.dao.util.AbstractJdbcMapper;
@@ -20,6 +22,7 @@ import com.voiturier.entity.IEntity;
  * @author Aston
  *
  */
+@Repository
 public abstract class AbstractDao<T extends IEntity> implements Serializable, IDAO<T> {
 
 	/**
@@ -27,6 +30,7 @@ public abstract class AbstractDao<T extends IEntity> implements Serializable, ID
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public JdbcTemplate getJdbcTemplate() {
@@ -71,7 +75,7 @@ public abstract class AbstractDao<T extends IEntity> implements Serializable, ID
 	public abstract T select(Object pUneClef) throws com.voiturier.dao.ex.ExceptionDao;
 
 	@Override
-	public  List<T> selectAll(String pAWhere, String pAnOrderBy) throws com.voiturier.dao.ex.ExceptionDao{
+	public List<T> selectAll(String pAWhere, String pAnOrderBy) throws com.voiturier.dao.ex.ExceptionDao {
 		List<T> result = new ArrayList<>();
 
 		try {
@@ -92,7 +96,7 @@ public abstract class AbstractDao<T extends IEntity> implements Serializable, ID
 				this.LOG.debug("Requete: " + request.toString());
 			}
 
-			result = this.getJdbcTemplate().query(request.toString(), (ResultSetExtractor<List<T>>)this.getMapper());
+			result = this.getJdbcTemplate().query(request.toString(), (ResultSetExtractor<List<T>>) this.getMapper());
 
 		} catch (Throwable e) {
 			throw new ExceptionDao(e);

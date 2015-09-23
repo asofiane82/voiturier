@@ -59,16 +59,27 @@ public class ServletConnexion extends HttpServlet {
 		if ((login != null) && (pwd != null)) {
 
 			try {
-				IAuthentificationService serviceAuth = appContext.getBean("AuthentificationService",
-						IAuthentificationService.class);
-				IUtilisateurEntity utilisateur = serviceAuth.authentifier("dj", "dj");
+				IAuthentificationService serviceAuth = appContext.getBean(IAuthentificationService.class);
+				IUtilisateurEntity utilisateur = serviceAuth.authentifier("jean@gmail.com", "gogo");
 				// if (utilisateur != null) {
-				request.getSession(true).setAttribute("loginUser", login);
-				request.getSession(true).setAttribute("pwdUser", pwd);
+				// request.getSession(true).setAttribute("loginUser", login);
+				// request.getSession(true).setAttribute("pwdUser", pwd);
+				// } else {
+				// request.setAttribute("autFailed", "login ou mot de passe non
+				// valide");
+				// request.getRequestDispatcher("connexion.jsp").forward(request,
+				// response);
+				// return;
 				// }
 
 				if (ServletConnexion.LOG.isInfoEnabled()) {
 					ServletConnexion.LOG.info("Bonjour " + utilisateur.getNom() + " " + utilisateur.getPrenom());
+					request.getSession(true).setAttribute("loginUser", login);
+					request.getSession(true).setAttribute("pwdUser", pwd);
+				} else {
+					request.setAttribute("autFailed", "login ou mot de passe non valide");
+					request.getRequestDispatcher("connexion.jsp").forward(request, response);
+					return;
 				}
 
 			} catch (Throwable e) {
