@@ -50,46 +50,25 @@ public abstract class AbstractDao<T extends IEntity> implements Serializable, ID
 	}
 
 	@Override
-	public String getTableName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract String getTableName();
 
 	@Override
-	public String getPkName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract String getPkName();
 
 	@Override
-	public String getAllColumnNames() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract String getAllColumnNames();
 
 	@Override
-	public T insert(T uneEntite) throws com.voiturier.dao.ex.ExceptionDao {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract T insert(T uneEntite) throws com.voiturier.dao.ex.ExceptionDao;
 
 	@Override
-	public T update(T uneEntite) throws com.voiturier.dao.ex.ExceptionDao {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract T update(T uneEntite) throws com.voiturier.dao.ex.ExceptionDao;
 
 	@Override
-	public T select(Object pUneClef) throws com.voiturier.dao.ex.ExceptionDao {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract T select(Object pUneClef) throws com.voiturier.dao.ex.ExceptionDao;
 
 	@Override
-	public List<T> selectAll(String pAWhere, String pAnOrderBy) throws com.voiturier.dao.ex.ExceptionDao {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract List<T> selectAll(String pAWhere, String pAnOrderBy) throws com.voiturier.dao.ex.ExceptionDao;
 
 	protected abstract AbstractJdbcMapper<T> getMapper();
 

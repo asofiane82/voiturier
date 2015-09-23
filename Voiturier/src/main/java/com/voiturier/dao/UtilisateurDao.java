@@ -51,9 +51,6 @@ public class UtilisateurDao extends AbstractDao<IUtilisateurEntity>implements IU
 		return "id,nom,prenom,email,statut,motdepasse";
 	}
 
-	protected AbstractJdbcMapper<IUtilisateurEntity> getMapper1() {
-		return new UtilisateurJdbcMapper();
-	}
 
 	@Override
 	public IUtilisateurEntity insert(final IUtilisateurEntity pUneEntite) throws ExceptionDao {
@@ -66,7 +63,7 @@ public class UtilisateurDao extends AbstractDao<IUtilisateurEntity>implements IU
 				public PreparedStatement createPreparedStatement(Connection connexion) throws SQLException {
 					PreparedStatement ps = connexion.prepareStatement(
 							"insert into " + UtilisateurDao.this.getTableName()
-									+ " (nom,prenom,email,statut,Mdp) values (?,?,?,?,?);",
+							+ " (nom,prenom,email,statut,Mdp) values (?,?,?,?,?);",
 							Statement.RETURN_GENERATED_KEYS);
 					ps.setString(1, pUneEntite.getNom());
 					ps.setString(2, pUneEntite.getPrenom());
@@ -105,7 +102,7 @@ public class UtilisateurDao extends AbstractDao<IUtilisateurEntity>implements IU
 				result = this.getJdbcTemplate().queryForObject(
 						"select " + this.getAllColumnNames() + " from " + this.getTableName() + " where "
 								+ this.getPkName() + "=?;",
-						this.getMapper(), Integer.valueOf(unId.toString()).intValue());
+								this.getMapper(), Integer.valueOf(unId.toString()).intValue());
 			}
 
 		} catch (Throwable e) {
