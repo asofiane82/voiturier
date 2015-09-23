@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,7 +49,7 @@
                     </button>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2">
-                        Établissement
+                        Etablissement
                     </button>
                 </div>
                 <div class="modal-footer">
@@ -66,28 +68,28 @@
                         <h4 class="modal-title" id="myModalLabel">Inscription particulier</h4>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="servletUtilisateur" name="inscriptionUtilisateur">
                             <div class="form-group">
                                 <label for="nom col-8">Nom <span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="nom" placeholder="Nom" required>
+                                <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required>
                             </div>
                             <div class="form-group">
                                 <label for="prenom col-8">Prénom <span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="prenom" placeholder="Prénom" required>
+                                <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" required>
                             </div>
                             <div class="form-group">
                                 <label for="email col-8">Email <span style="color:red;">*</span></label>
-                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                <input type="email" class="form-control" id="emailUtilisateur" name="emailUtilisateur" placeholder="Email" required>
                             </div>
                             <div class="form-group">
-                                <label for="mdp">Mot de passe <span style="color:red;">*</span></label>
-                                <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" required>
+                                <label for="mdp">Mot de passe<span style="color:red;">*</span></label>
+                                <input type="password" class="form-control" id="mdpUtilisateur" name="mdpUtilisateur" placeholder="Mot de passe" required>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary">Inscription</button>
+                        <button type="button" class="btn btn-primary" onclick="javascript:document.forms['inscriptionUtilisateur'].submit();">Inscription</button>
                     </div>
                 </div>
             </div>
@@ -102,61 +104,58 @@
                 <div class="modal-content content2">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Inscription Établissement</h4>
+                        <h4 class="modal-title" id="myModalLabel">Inscription établissement</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="servletEtablissement" name="inscriptionEtablissement">
                             <div class="form-group">
                                 <label for="exampleInputName col-8">Raison sociale <span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="exampleInputName" placeholder="Raison sociale" required>
+                                <input type="text" class="form-control" id="exampleInputName" name="raisonSociale" placeholder="Raison sociale" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName col-8" class="control-label">Type d'établissement <span style="color:red;">*</span></label>
-                                <select class="form-control">
-                                    <option>Séléctionnez votre type d'établissement</option>
-                                    <option>Hotel</option>
-                                    <option>Restaurant</option>
-                                    <option>Salon de coiffure</option>
+                                <select class="form-control" name="typeEtablissement">
+                                    <option>Sélectionnez votre type d'établissement</option>
+                                    <option value="hotel">Hotel</option>
+                                    <option value="restaurant">Restaurant</option>
+                                    <option value="salonDeCoiffure">Salon de coiffure</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPrenom col-8" class="control-label">N° SIRET <span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="exampleInputPrenom" placeholder="Nom">
+                                <label for="exampleInputPrenom col-8" class="control-label">No SIRET <span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="siret" name="siret" placeholder="Siret">
                             </div>
                             <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
                             <div class="form-group">
                                 <label for="Addresse col-8">Adresse</label>
-                                <input type="text" class="form-control" id="adresse" placeholder="Adresse" /> <br>
-                               <input type="text" class="form-control" id="cp" placeholder="Code postal"> <br>
-                               <input type="text" class="form-control" id="ville" placeholder="Ville"> <br>
+                                <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse" /> <br>
+                               <input type="text" class="form-control" id="cp" name="codePostal" placeholder="Code postal"> <br>
+                               <input type="text" class="form-control" id="ville" name="ville" placeholder="Ville"> <br>
                                </div>
                         
 
                             <div class="form-group">
                                 <label for="nom col-8" class="control-label">Nom du contact</label>
-                                <input type="text" class="form-control" id="nom" placeholder="Nom">
+                                <input type="text" class="form-control" id="nomContact" name="nomContact" placeholder="Nom du contact">
                             </div>
-                            <div class="form-group">
-                                <label for="prenom col-8">Prénom du contact</label>
-                                <input type="text" class="form-control" id="prenom" placeholder="Prénom">
-                            </div>
+                            
                             <div class="form-group">
                                 <label for="fonction col-8">Fonction</label>
-                                <input type="text" class="form-control" id="fonction" placeholder="Fonction">
+                                <input type="text" class="form-control" id="fonction" name="fonction" placeholder="Fonction">
                             </div>
                             <div class="form-group">
                                 <label for="email col-8">Email <span style="color:red;">*</span></label>
-                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                <input type="email" class="form-control" id="emailEtablissement" name="emailEtablissement" placeholder="Email" required>
                             </div>
                             <div class="form-group">
                                 <label for="mdp">Mot de passe <span style="color:red;">*</span></label>
-                                <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" required>
+                                <input type="password" class="form-control" id="mdpEtablissement" name="mdpEtablissement" placeholder="Mot de passe" required>
                             </div>
                         </form>
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary">Inscription</button>
+                        <button type="button" class="btn btn-primary" onclick="javascript:document.forms['inscriptionEtablissement'].submit();">Inscription</button>
                     </div>
                 </div>
             </div>

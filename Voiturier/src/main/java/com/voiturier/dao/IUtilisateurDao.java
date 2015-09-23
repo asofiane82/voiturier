@@ -12,6 +12,6 @@ import com.voiturier.entity.IUtilisateurEntity;
  */
 public interface IUtilisateurDao extends IDAO<IUtilisateurEntity> {
 
-	public abstract IUtilisateurEntity selectLogin(String pLogin) throws ExceptionDao;
+	public abstract IUtilisateurEntity selectEmail(String pemail) throws ExceptionDao;
 
 }

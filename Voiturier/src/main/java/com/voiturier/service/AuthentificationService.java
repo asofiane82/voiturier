@@ -33,10 +33,10 @@ public class AuthentificationService extends AbstractService implements IAuthent
 		this.utilisateurDAO = utilisateurDAO;
 	}
 
-	public IUtilisateurEntity authentifier(String pLogin, String pPassword)
+	public IUtilisateurEntity authentifier(String anEmail, String pPassword)
 			throws AuthentificationException, ErreurTechniqueException {
-		if ((pLogin == null) || (pLogin.trim().length() == 0)) {
-			throw new NullPointerException("login");
+		if ((anEmail == null) || (anEmail.trim().length() == 0)) {
+			throw new NullPointerException("email");
 		}
 		if ((pPassword == null) || (pPassword.trim().length() == 0)) {
 			throw new NullPointerException("password");
@@ -44,7 +44,8 @@ public class AuthentificationService extends AbstractService implements IAuthent
 		IUtilisateurEntity resultat = null;
 		try {
 			// resultat = this.utilisateurDAO.selectLogin(pLogin, null);
-			resultat = this.utilisateurDAO.selectLogin(pLogin);
+			resultat = this.utilisateurDAO.selectEmail(anEmail);
+
 		} catch (ExceptionDao e) {
 			throw new ErreurTechniqueException(e);
 		}
