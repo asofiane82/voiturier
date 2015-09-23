@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset="utf-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="fr">
@@ -49,7 +49,7 @@
                     </button>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2">
-                        �tablissement
+                        Etablissement
                     </button>
                 </div>
                 <div class="modal-footer">
@@ -68,14 +68,14 @@
                         <h4 class="modal-title" id="myModalLabel">Inscription particulier</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="servletUtilisateur">
+                        <form action="servletUtilisateur" name="inscriptionUtilisateur">
                             <div class="form-group">
                                 <label for="nom col-8">Nom <span style="color:red;">*</span></label>
                                 <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required>
                             </div>
                             <div class="form-group">
-                                <label for="prenom col-8">Pr�nom <span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Pr�nom" required>
+                                <label for="prenom col-8">Prénom <span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" required>
                             </div>
                             <div class="form-group">
                                 <label for="email col-8">Email <span style="color:red;">*</span></label>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary">Inscription</button>
+                        <button type="button" class="btn btn-primary" onclick="javascript:document.forms['inscriptionUtilisateur'].submit();">Inscription</button>
                     </div>
                 </div>
             </div>
@@ -104,25 +104,25 @@
                 <div class="modal-content content2">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Inscription �tablissement</h4>
+                        <h4 class="modal-title" id="myModalLabel">Inscription établissement</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" action="servletEtablissement">
+                        <form class="form-horizontal" action="servletEtablissement" name="inscriptionEtablissement">
                             <div class="form-group">
                                 <label for="exampleInputName col-8">Raison sociale <span style="color:red;">*</span></label>
                                 <input type="text" class="form-control" id="exampleInputName" name="raisonSociale" placeholder="Raison sociale" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputName col-8" class="control-label">Type d'�tablissement <span style="color:red;">*</span></label>
+                                <label for="exampleInputName col-8" class="control-label">Type d'établissement <span style="color:red;">*</span></label>
                                 <select class="form-control" name="typeEtablissement">
-                                    <option>S�l�ctionnez votre type d'�tablissement</option>
+                                    <option>Sélectionnez votre type d'établissement</option>
                                     <option value="hotel">Hotel</option>
                                     <option value="restaurant">Restaurant</option>
                                     <option value="salonDeCoiffure">Salon de coiffure</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPrenom col-8" class="control-label">N� SIRET <span style="color:red;">*</span></label>
+                                <label for="exampleInputPrenom col-8" class="control-label">No SIRET <span style="color:red;">*</span></label>
                                 <input type="text" class="form-control" id="siret" name="siret" placeholder="Siret">
                             </div>
                             <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
@@ -155,7 +155,7 @@
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary">Inscription</button>
+                        <button type="button" class="btn btn-primary" onclick="javascript:document.forms['inscriptionEtablissement'].submit();">Inscription</button>
                     </div>
                 </div>
             </div>
