@@ -82,7 +82,7 @@
                                 <input type="email" class="form-control" id="emailUtilisateur" name="emailUtilisateur" placeholder="Email" required>
                             </div>
                             <div class="form-group">
-                                <label for="mdp">Mot de passe <span style="color:red;">*</span></label>
+                                <label for="mdp">Mot de passe<span style="color:red;">*</span></label>
                                 <input type="password" class="form-control" id="mdpUtilisateur" name="mdpUtilisateur" placeholder="Mot de passe" required>
                             </div>
                         </form>
