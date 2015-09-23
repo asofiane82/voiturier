@@ -57,10 +57,10 @@ public class ServletConnexion extends HttpServlet {
 		String pwd = request.getParameter("inPass");
 
 		if ((login != null) && (pwd != null)) {
-
+			IUtilisateurEntity utilisateur = null;
 			try {
 				IAuthentificationService serviceAuth = appContext.getBean(IAuthentificationService.class);
-				IUtilisateurEntity utilisateur = serviceAuth.authentifier("jean@gmail.com", "gogo");
+				utilisateur = serviceAuth.authentifier("jean@gmail.com", "gogo");
 				// if (utilisateur != null) {
 				// request.getSession(true).setAttribute("loginUser", login);
 				// request.getSession(true).setAttribute("pwdUser", pwd);
@@ -74,8 +74,7 @@ public class ServletConnexion extends HttpServlet {
 
 				if (ServletConnexion.LOG.isInfoEnabled()) {
 					ServletConnexion.LOG.info("Bonjour " + utilisateur.getNom() + " " + utilisateur.getPrenom());
-					request.getSession(true).setAttribute("loginUser", login);
-					request.getSession(true).setAttribute("pwdUser", pwd);
+					request.getSession(true).setAttribute("utilisateur", utilisateur);
 				} else {
 					request.setAttribute("autFailed", "login ou mot de passe non valide");
 					request.getRequestDispatcher("connexion.jsp").forward(request, response);
@@ -90,7 +89,6 @@ public class ServletConnexion extends HttpServlet {
 				ServletConnexion.LOG.info("-- Fin -- ");
 			}
 			request.getRequestDispatcher("map.html").forward(request, response);
-			// System.exit(0);
 		}
 	}
 
