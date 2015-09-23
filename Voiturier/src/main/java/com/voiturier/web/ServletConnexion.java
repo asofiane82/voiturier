@@ -72,9 +72,11 @@ public class ServletConnexion extends HttpServlet {
 					return;
 				}
 
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				ServletConnexion.LOG.fatal("Erreur", e);
-				System.exit(-1);
+				request.setAttribute("autFailed", "login ou mot de passe non valide");
+				request.getRequestDispatcher("connexion.jsp").forward(request, response);
+				return;
 			}
 			if (ServletConnexion.LOG.isInfoEnabled()) {
 				ServletConnexion.LOG.info("-- Fin -- " + this.getClass());
