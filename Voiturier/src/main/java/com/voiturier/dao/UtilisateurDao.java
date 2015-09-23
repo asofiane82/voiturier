@@ -43,12 +43,12 @@ public class UtilisateurDao extends AbstractDao<IUtilisateurEntity>implements IU
 
 	@Override
 	public String getPkName() {
-		return "id";
+		return "idUtilisateur";
 	}
 
 	@Override
 	public String getAllColumnNames() {
-		return "id,nom,prenom,email,statut,motdepasse";
+		return "idUtilisateur,nom,prenom,email,statut,motdepasse";
 	}
 
 	@Override
