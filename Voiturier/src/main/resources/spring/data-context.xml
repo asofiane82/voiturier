@@ -9,7 +9,9 @@ http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	
 	<context:component-scan base-package="com.banque.dao,com.banque.service" />
 
 	
@@ -25,16 +27,11 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="database.properties" />
-	</bean>
+	<context:property-placeholder location="classpath*:spring/database.properties"/>
 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<bean
-		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
 </beans>
