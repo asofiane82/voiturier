@@ -24,7 +24,7 @@ import com.voiturier.entity.IUtilisateurEntity;
  *
  */
 @Repository
-public abstract class UtilisateurDao extends AbstractDao<IUtilisateurEntity>implements IUtilisateurDao {
+public class UtilisateurDao extends AbstractDao<IUtilisateurEntity>implements IUtilisateurDao {
 
 	private static final long serialVersionUID = 1L;
 
