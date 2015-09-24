@@ -1,8 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" %>
-
 <!doctype html>
-<html lang="fr">
+<html>
 	<head>
 		<meta charset="utf-8">
 		<title>Voiturier | Geolocalisation de service de voiturier</title>
@@ -41,20 +38,24 @@ body,
 		    		zoom: 17,
 		    		mapTypeId: google.maps.MapTypeId.ROADMAP
 		    	};
-
+                
+// Création de la carte 
+                
 		    	map = new google.maps.Map(document.getElementById('google_canvas'), mapOptions);
 
+// Géolocalisation
 	    		navigator.geolocation.getCurrentPosition(function(position) {
+// Modification du marker pour la self-geolocalisation                      
+   var myMarkerImage = new google.maps.MarkerImage('img/icon.png');
+                    
+// Coordonnées de Géolocalisation
+                    var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-		    		var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+    
 		    		var marker = new google.maps.Marker({
 		    			map: map,
 		    			position: geolocate,
-		    			content:
-		    				'<h1>Location pinned from HTML5 Geolocation!</h1>' +
-		    				'<h2>Latitude: ' + position.coords.latitude + '</h2>' +
-		    				'<h2>Longitude: ' + position.coords.longitude + '</h2>'
+                        icon: myMarkerImage
 		    		});
 
 		    		map.setCenter(geolocate);
