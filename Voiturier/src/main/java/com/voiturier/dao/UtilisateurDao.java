@@ -62,13 +62,12 @@ public class UtilisateurDao extends AbstractDao<IUtilisateurEntity>implements IU
 				public PreparedStatement createPreparedStatement(Connection connexion) throws SQLException {
 					PreparedStatement ps = connexion.prepareStatement(
 							"insert into " + UtilisateurDao.this.getTableName()
-									+ " (nom,prenom,email,statut,Mdp) values (?,?,?,?,?);",
+									+ " (nom,prenom,email,statut,motdepasse) values (?,?,?,?,?);",
 							Statement.RETURN_GENERATED_KEYS);
 					ps.setString(1, pUneEntite.getNom());
 					ps.setString(2, pUneEntite.getPrenom());
 					ps.setString(3, pUneEntite.getEmail());
 					ps.setInt(4, pUneEntite.getStatut());
-
 					ps.setString(5, pUneEntite.getMdp());
 
 					return ps;

@@ -3,7 +3,8 @@
  */
 package com.voiturier.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.voiturier.dao.IEtablissementDao;
 import com.voiturier.dao.ex.ExceptionDao;
@@ -11,17 +12,17 @@ import com.voiturier.entity.EtablissementEntity;
 import com.voiturier.entity.IEtablissementEntity;
 import com.voiturier.service.ex.ErreurTechniqueException;
 
-
 /**
  * @author Aston
  *
  */
+@Service
 public class EtablissementService extends AbstractService implements IEtablissementService {
 
 	/**
 	 *
 	 */
-	@Qualifier("idCompteDao")
+	@Autowired
 	private IEtablissementDao etablissementDao;
 
 	public EtablissementService() {
@@ -36,9 +37,8 @@ public class EtablissementService extends AbstractService implements IEtablissem
 		this.etablissementDao = etablissementDao;
 	}
 
-
-	public void inscription(VueEtablissement ve )
-			throws NullPointerException, ErreurTechniqueException {
+	@Override
+	public void inscription(VueEtablissement ve) throws NullPointerException, ErreurTechniqueException {
 
 		if (ve.getRaisonSocial() == null) {
 			throw new NullPointerException("RaisonSocial");
@@ -101,6 +101,8 @@ public class EtablissementService extends AbstractService implements IEtablissem
 		resultat.setCodePostal(ve.getCode_postal());
 		resultat.setVille(ve.getVille());
 		resultat.setSiret(ve.getSiret());
+		resultat.setIdService(ve.getService_idService());
+
 		try {
 			resultat = this.getEtablissementDao().insert(resultat);
 		} catch (ExceptionDao e) {
