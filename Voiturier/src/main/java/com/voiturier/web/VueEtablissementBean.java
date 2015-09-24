@@ -1,6 +1,10 @@
-package com.voiturier.service;
+package com.voiturier.web;
 
-public class VueEtablissement {
+public class VueEtablissementBean {
+
+	public VueEtablissementBean() {
+		// TODO Auto-generated constructor stub
+	}
 
 	private String raisonSocial;
 	private String type;
@@ -15,25 +19,6 @@ public class VueEtablissement {
 	private String ville;
 	private String Siret;
 	private Integer Service_idService;
-
-	public VueEtablissement(String raisonSocial, String type, String numerotelephone, String siteweb, String contact,
-			String email, String fonction, String motdepasse, String adresse, String code_postal, String ville,
-			String siret, Integer Service_idService) {
-		super();
-		this.raisonSocial = raisonSocial;
-		this.type = type;
-		this.numerotelephone = numerotelephone;
-		this.siteweb = siteweb;
-		this.contact = contact;
-		this.email = email;
-		this.fonction = fonction;
-		this.motdepasse = motdepasse;
-		this.adresse = adresse;
-		this.code_postal = code_postal;
-		this.ville = ville;
-		this.Siret = siret;
-		this.Service_idService = Service_idService;
-	}
 
 	/**
 	 * @return the service_idService
@@ -52,6 +37,25 @@ public class VueEtablissement {
 
 	public String getRaisonSocial() {
 		return this.raisonSocial;
+	}
+
+	public VueEtablissementBean(String raisonSocial, String type, String numerotelephone, String siteweb,
+			String contact, String email, String fonction, String motdepasse, String adresse, String code_postal,
+			String ville, String siret, Integer Service_idService) {
+		super();
+		this.raisonSocial = raisonSocial;
+		this.type = type;
+		this.numerotelephone = numerotelephone;
+		this.siteweb = siteweb;
+		this.contact = contact;
+		this.email = email;
+		this.fonction = fonction;
+		this.motdepasse = motdepasse;
+		this.adresse = adresse;
+		this.code_postal = code_postal;
+		this.ville = ville;
+		this.Siret = siret;
+		this.Service_idService = Service_idService;
 	}
 
 	public void setRaisonSocial(String raisonSocial) {
@@ -144,10 +148,6 @@ public class VueEtablissement {
 
 	public void setSiret(String siret) {
 		this.Siret = siret;
-	}
-
-	public VueEtablissement() {
-		// TODO Auto-generated constructor stub
 	}
 
 }

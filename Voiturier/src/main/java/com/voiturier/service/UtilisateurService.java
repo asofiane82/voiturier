@@ -3,6 +3,9 @@
  */
 package com.voiturier.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.voiturier.dao.IUtilisateurDao;
 import com.voiturier.dao.IUtilisateurDao;
 import com.voiturier.dao.IUtilisateurDao;
@@ -18,7 +21,9 @@ import com.voiturier.web.VueParticulierBean;
  * @author Aston
  *
  */
+@Service
 public class UtilisateurService extends AbstractService implements IUtilisateurService {
+	@Autowired
 	private IUtilisateurDao UtilisateurDao;
 
 	public UtilisateurService() {
@@ -33,6 +38,7 @@ public class UtilisateurService extends AbstractService implements IUtilisateurS
 		this.UtilisateurDao = utilisateurDao;
 	}
 
+	@Override
 	public void inscription(VueParticulierBean V)
 
 	throws NullPointerException, com.voiturier.service.ex.ErreurTechniqueException {
@@ -54,6 +60,7 @@ public class UtilisateurService extends AbstractService implements IUtilisateurS
 		resultat.setPrenom(V.getPrenom());
 		resultat.setEmail(V.getEmail());
 		resultat.setMdp(V.getMdp());
+		resultat.setStatut(Integer.valueOf(0));
 
 		try {
 			resultat = this.getUtilisateurDao().insert(resultat);

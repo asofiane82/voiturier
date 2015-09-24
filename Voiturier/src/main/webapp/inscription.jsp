@@ -68,7 +68,7 @@
                         <h4 class="modal-title" id="myModalLabel">Inscription particulier</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="servletUtilisateur" name="inscriptionUtilisateur">
+                        <form action="ServletInscriptionUtilisateur" name="inscriptionUtilisateur">
                             <div class="form-group">
                                 <label for="nom col-8">Nom <span style="color:red;">*</span></label>
                                 <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required>
@@ -107,7 +107,7 @@
                         <h4 class="modal-title" id="myModalLabel">Inscription établissement</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" action="servletEtablissement" name="inscriptionEtablissement">
+                        <form class="form-horizontal" action="ServletInscriptionEtablissement" name="inscriptionEtablissement">
                             <div class="form-group">
                                 <label for="exampleInputName col-8">Raison sociale <span style="color:red;">*</span></label>
                                 <input type="text" class="form-control" id="exampleInputName" name="raisonSociale" placeholder="Raison sociale" required>
