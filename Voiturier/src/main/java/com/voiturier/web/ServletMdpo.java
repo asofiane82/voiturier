@@ -64,7 +64,6 @@ public class ServletMdpo extends HttpServlet {
 		WebApplicationContext appContext = WebApplicationContextUtils
 				.getWebApplicationContext(request.getServletContext());
 		String email = request.getParameter("email");
-		String mdp = request.getParameter("mdp");
 
 		if (email != null) {
 
@@ -75,14 +74,14 @@ public class ServletMdpo extends HttpServlet {
 				if (utilisateur != null) {
 					// request.getSession(true).setAttribute("loginUser",
 					// email);
+
+					String mdp = utilisateur.getMdp();
 					request.getSession(true).setAttribute("mdp", mdp);
+
 					// ok
 				} else {
 					// pas ok
-				}
-
-				if (ServletMdpo.LOG.isInfoEnabled()) {
-					ServletMdpo.LOG.info("Bonjour il ya une erreur ");
+					request.setAttribute("erreur", "");
 				}
 
 			} catch (Throwable e) {
