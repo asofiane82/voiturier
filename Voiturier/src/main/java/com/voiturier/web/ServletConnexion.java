@@ -49,7 +49,7 @@ public class ServletConnexion extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (ServletConnexion.LOG.isInfoEnabled()) {
-			ServletConnexion.LOG.info("-- Debut -- ");
+			ServletConnexion.LOG.info("-- Debut -- " + this.getClass());
 		}
 		WebApplicationContext appContext = WebApplicationContextUtils
 				.getWebApplicationContext(request.getServletContext());
@@ -57,29 +57,31 @@ public class ServletConnexion extends HttpServlet {
 		String pwd = request.getParameter("inPass");
 
 		if ((login != null) && (pwd != null)) {
-
+			IUtilisateurEntity utilisateur = null;
 			try {
-				IAuthentificationService serviceAuth = appContext.getBean("AuthentificationService",
-						IAuthentificationService.class);
-				IUtilisateurEntity utilisateur = serviceAuth.authentifier("dj", "dj");
-				// if (utilisateur != null) {
-				request.getSession(true).setAttribute("loginUser", login);
-				request.getSession(true).setAttribute("pwdUser", pwd);
-				// }
-
-				if (ServletConnexion.LOG.isInfoEnabled()) {
-					ServletConnexion.LOG.info("Bonjour " + utilisateur.getNom() + " " + utilisateur.getPrenom());
+				IAuthentificationService serviceAuth = appContext.getBean(IAuthentificationService.class);
+				utilisateur = serviceAuth.authentifier(login, pwd);
+				if (utilisateur != null) {
+					if (ServletConnexion.LOG.isInfoEnabled()) {
+						ServletConnexion.LOG.info("Bonjour " + utilisateur.getNom() + " " + utilisateur.getPrenom());
+					}
+					request.getSession(true).setAttribute("utilisateur", utilisateur);
+				} else {
+					request.setAttribute("autFailed", "login ou mot de passe non valide");
+					request.getRequestDispatcher("connexion.jsp").forward(request, response);
+					return;
 				}
 
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				ServletConnexion.LOG.fatal("Erreur", e);
-				System.exit(-1);
+				request.setAttribute("autFailed", "login ou mot de passe non valide");
+				request.getRequestDispatcher("connexion.jsp").forward(request, response);
+				return;
 			}
 			if (ServletConnexion.LOG.isInfoEnabled()) {
-				ServletConnexion.LOG.info("-- Fin -- ");
+				ServletConnexion.LOG.info("-- Fin -- " + this.getClass());
 			}
 			request.getRequestDispatcher("map.html").forward(request, response);
-			// System.exit(0);
 		}
 	}
 

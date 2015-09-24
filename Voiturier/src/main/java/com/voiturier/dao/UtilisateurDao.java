@@ -24,7 +24,7 @@ import com.voiturier.entity.IUtilisateurEntity;
  *
  */
 @Repository
-public abstract class UtilisateurDao extends AbstractDao<IUtilisateurEntity>implements IUtilisateurDao {
+public class UtilisateurDao extends AbstractDao<IUtilisateurEntity>implements IUtilisateurDao {
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,12 +43,12 @@ public abstract class UtilisateurDao extends AbstractDao<IUtilisateurEntity>impl
 
 	@Override
 	public String getPkName() {
-		return "id";
+		return "idUtilisateur";
 	}
 
 	@Override
 	public String getAllColumnNames() {
-		return "id,nom,prenom,email,statut,motdepasse";
+		return "idUtilisateur,nom,prenom,email,statut,motdepasse";
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public abstract class UtilisateurDao extends AbstractDao<IUtilisateurEntity>impl
 
 	@Override
 	public IUtilisateurEntity selectEmail(String pemail) throws ExceptionDao {
-		List<IUtilisateurEntity> allLogin = this.selectAll("login='" + pemail + "'", null);
+		List<IUtilisateurEntity> allLogin = this.selectAll("Email='" + pemail + "'", null);
 		if ((allLogin == null) || allLogin.isEmpty()) {
 			return null;
 		}

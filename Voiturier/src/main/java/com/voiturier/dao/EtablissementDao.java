@@ -11,6 +11,7 @@ import java.sql.Statement;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.voiturier.dao.ex.ExceptionDao;
 import com.voiturier.dao.util.AbstractJdbcMapper;
@@ -21,8 +22,8 @@ import com.voiturier.entity.IEtablissementEntity;
  * @author Aston
  *
  */
-
-public class EtablissementDao extends AbstractDao<IEtablissementEntity> implements IEtablissementDao {
+@Repository
+public class EtablissementDao extends AbstractDao<IEtablissementEntity>implements IEtablissementDao {
 
 	public EtablissementDao() {
 
@@ -43,6 +44,7 @@ public class EtablissementDao extends AbstractDao<IEtablissementEntity> implemen
 		// TODO Auto-generated method stub
 		return "Etablissement";
 	}
+
 	@Override
 	protected AbstractJdbcMapper<IEtablissementEntity> getMapper() {
 		return new EtablissementJdbcMapper();
@@ -67,20 +69,19 @@ public class EtablissementDao extends AbstractDao<IEtablissementEntity> implemen
 		}
 
 	}
+
 	@Override
 	public IEtablissementEntity insert(IEtablissementEntity pUneEntite) throws ExceptionDao {
 		if (pUneEntite == null) {
 			return null;
 		}
 
-
 		try {
 
 			PreparedStatementCreator psc = new PreparedStatementCreator() {
 				@Override
 				public PreparedStatement createPreparedStatement(Connection connexion) throws SQLException {
-					String sql = "insert into "
-							+ EtablissementDao.this.getTableName()
+					String sql = "insert into " + EtablissementDao.this.getTableName()
 							+ " (raisonSocial, type, numerotelephone, siteweb, contact, email, fonction, motdepasse, adresse, code_postal, ville, Siret, Service_idService) values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 					PreparedStatement ps = connexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 					ps.setString(1, pUneEntite.getRaisonSociale());
@@ -110,7 +111,6 @@ public class EtablissementDao extends AbstractDao<IEtablissementEntity> implemen
 		return pUneEntite;
 	}
 
-
 	@Override
 	public IEtablissementEntity update(IEtablissementEntity pUneEntite) throws ExceptionDao {
 		if (pUneEntite == null) {
@@ -122,25 +122,14 @@ public class EtablissementDao extends AbstractDao<IEtablissementEntity> implemen
 
 		try {
 
-			String sql = "update "
-					+ this.getTableName()
+			String sql = "update " + this.getTableName()
 					+ " set raisonSocial=?, type=?, numerotelephone=?, siteweb=?, contact=?, email=?, fonction=?, motdepasse=?, adresse=?, code_postal=?, ville=?, Siret=?, Service_idService=? where "
-					+ this.getPkName() + "=?;" ;
-			this.getJdbcTemplate().update(sql, pUneEntite.getRaisonSociale(),
-					pUneEntite.getType(),
-					pUneEntite.getTelephone(),
-					pUneEntite.getSiteWeb(),
-					pUneEntite.getContact(),
-					pUneEntite.getEmail(),
-					pUneEntite.getFonction(),
-					pUneEntite.getMdp(),
-					pUneEntite.getAdresse(),
-					pUneEntite.getCodePostal(),
-					pUneEntite.getVille(),
-					pUneEntite.getSiret(),
-					pUneEntite.getIdService().intValue(),
+					+ this.getPkName() + "=?;";
+			this.getJdbcTemplate().update(sql, pUneEntite.getRaisonSociale(), pUneEntite.getType(),
+					pUneEntite.getTelephone(), pUneEntite.getSiteWeb(), pUneEntite.getContact(), pUneEntite.getEmail(),
+					pUneEntite.getFonction(), pUneEntite.getMdp(), pUneEntite.getAdresse(), pUneEntite.getCodePostal(),
+					pUneEntite.getVille(), pUneEntite.getSiret(), pUneEntite.getIdService().intValue(),
 					pUneEntite.getId().intValue());
-
 
 		} catch (Throwable e) {
 			throw new ExceptionDao(e);
