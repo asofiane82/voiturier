@@ -7,8 +7,11 @@ import com.voiturier.dao.IUtilisateurDao;
 import com.voiturier.dao.IUtilisateurDao;
 import com.voiturier.dao.IUtilisateurDao;
 import com.voiturier.dao.ex.ExceptionDao;
+import com.voiturier.entity.IUtilisateurEntity;
 import com.voiturier.entity.UtilisateurEntity;
+import com.voiturier.service.ex.AuthentificationException;
 import com.voiturier.service.ex.ErreurTechniqueException;
+import com.voiturier.service.ex.UtilisateurInconnuException;
 import com.voiturier.web.VueParticulierBean;
 
 /**
@@ -58,5 +61,26 @@ public class UtilisateurService extends AbstractService implements IUtilisateurS
 			throw new ErreurTechniqueException(e);
 		}
 
+	}
+
+	@Override
+	public IUtilisateurEntity mdpoublier(String Email) throws AuthentificationException, ErreurTechniqueException {
+		if ((Email == null) || (Email.trim().length() == 0)) {
+			throw new NullPointerException("email");
+		}
+
+		IUtilisateurEntity resultat = null;
+		try {
+			// resultat = this.utilisateurDAO.selectLogin(pLogin, null);
+			resultat = this.UtilisateurDao.selectEmail(Email);
+
+		} catch (ExceptionDao e) {
+			throw new ErreurTechniqueException(e);
+		}
+		if (resultat == null) {
+			throw new UtilisateurInconnuException();
+		}
+
+		return resultat;
 	}
 }

@@ -128,6 +128,7 @@ public class UtilisateurDao extends AbstractDao<IUtilisateurEntity>implements IU
 	@Override
 	public IUtilisateurEntity selectEmail(String pemail) throws ExceptionDao {
 		List<IUtilisateurEntity> allLogin = this.selectAll("Email='" + pemail + "'", null);
+
 		if ((allLogin == null) || allLogin.isEmpty()) {
 			return null;
 		}
