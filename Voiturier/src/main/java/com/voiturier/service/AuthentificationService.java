@@ -3,6 +3,9 @@
  */
 package com.voiturier.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.voiturier.dao.IUtilisateurDao;
 import com.voiturier.dao.ex.ExceptionDao;
 import com.voiturier.entity.IUtilisateurEntity;
@@ -15,7 +18,9 @@ import com.voiturier.service.ex.UtilisateurInconnuException;
  * @author Aston
  *
  */
+@Service
 public class AuthentificationService extends AbstractService implements IAuthentificationService {
+	@Autowired
 	private IUtilisateurDao utilisateurDAO;
 
 	/**
@@ -33,6 +38,7 @@ public class AuthentificationService extends AbstractService implements IAuthent
 		this.utilisateurDAO = utilisateurDAO;
 	}
 
+	@Override
 	public IUtilisateurEntity authentifier(String anEmail, String pPassword)
 			throws AuthentificationException, ErreurTechniqueException {
 		if ((anEmail == null) || (anEmail.trim().length() == 0)) {
