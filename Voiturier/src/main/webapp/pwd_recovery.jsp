@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -9,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Voiturier | Inscription</title>
+    <title>Voiturier | MotDePasseOublier</title>
     <link href="css/style.css" rel="stylesheet">
     
     
@@ -42,15 +44,15 @@
     <div class="modal-content connect">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Mot de passe oublié</h4>
+        <h4 class="modal-title" id="myModalLabel">Mot de passe oubliÃ©</h4>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="frmMdpo" name="frmMdpo" action="ServletMdpo" method="get">
   <div class="form-group">
     <label for="exampleInputEmail1 col-8">Merci d'indiquer votre email <span style="color:red;">*</span></label>
     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
   </div>
- </form>
+ 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary">Envoyer</button>
@@ -76,7 +78,7 @@
         interval: 5000 //changes the speed
     })
     </script>
-
+</form>
 </body>
 
 </html>
